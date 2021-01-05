@@ -5,17 +5,19 @@ from tkinter import messagebox
 import os
 import turtle
 
+root = Tk()
+
 answers = [
-    "bottle",
-    "gamer",
-    "computer",
-    "science",
-    "india",
-    "america",
-    "dubai",
+    "BOTTLE",
+    "GAMER",
+    "COMPUTER",
+    "SCIENCE",
+    "INDIA",
+    "AMERICA",
+    "DUBAI",
 ]
 
-words = [
+jumbled_words = [
     "TOLETB",
     "MAGER",
     "PCEUORTM",
@@ -25,21 +27,30 @@ words = [
     "BUDIA",
 ]
 
-num =  random.randrange(0, len(words), 1)
+num =  random.randrange(0, len(jumbled_words), 1)
+
+lbl = Label(
+      root,
+      text = "gg",
+      font = ("Agency FB", 18),
+      bg = "#f5756c",
+      fg = "#fc1100",
+  )
+lbl.pack(pady = 30,ipady=10,ipadx=15)
 
 def default():
-    global words,answers,num
-    lbl.config(text = words[num])
+    global jumbled_words,answers,num
+    lbl.config(text = jumbled_words[num])
 
 def res():
-    global words,answers,num
-    num = random.randrange(0, len(words), 1)
-    lbl.config(text = words[num])
+    global jumbled_words,answers,num
+    num = random.randrange(0, len(jumbled_words), 1)
+    lbl.config(text = jumbled_words[num])
     e1.delete(0, END)
 
 
 def checkans():
-    global words,answers,num
+    global jumbled_words,answers,num
     var = e1.get()
     if var == answers[num]:
         messagebox.showinfo("CORRECT", "This is probably a  correct answer")
@@ -63,58 +74,42 @@ def session():
   root = tkinter.Tk()
   root.geometry("450x500+175+50")
   root.title("Jumbled letters")
-  root.configure(background = "#f5756c")
 
-  lbl = Label(
-      root,
-      text = "gg",
-      font = ("Agency FB", 18),
-      bg = "#f5756c",
-      fg = "#fc1100",
-  )
-  lbl.pack(pady = 30,ipady=10,ipadx=15)
+ans1 = StringVar()
+e1 = Entry(
+  root,
+  font=("Agency FB", 16),
+  textvariable = ans1,
+)
 
+# New segment starts here.
 
-  ans1 = StringVar()
-  e1 = Entry(
-      root,
-      font = ("Agency FB", 16),
-      textvariable = ans1,
-  )
-  e1.pack(pady= 20,ipady=5,ipadx=5)
+btncheck = Button(
+  root,
+  text="SUBMIT",
+  font=("Agency FB", 16),
+  width = 16,
+  bg="#ffdbd9",
+  fg="#00ff04",
+  relief=GROOVE,
+  command=checkans,
+)
+btncheck.pack(pady=20, ipadx=10, ipady=15)
 
+btnreset = Button(
+  root,
+  text="RESET",
+  font=("Agency FB", 16),
+  width = 16,
+  bg="#ffdbd9",
+  fg="#fc1100",
+  relief=GROOVE,
+  command=res,
+)
+btnreset.pack(pady=20, ipadx=10, ipady=15)
 
-  btncheck = Button(
-      root,
-      text = "SUBMIT",
-      font = ("Agency FB", 16),
-      width = 16,
-      bg = "#ffdbd9",
-      fg = "#00ff04",
-      relief = GROOVE,
-      command = checkans,
-  )
-  btncheck.pack(pady = 20,ipadx=10,ipady=15)
-
-
-  btnreset = Button(
-      root,
-      text = "RESET",
-      font = ("Agency FB", 16),
-      width = 16,
-      bg = "#ffdbd9",
-      fg = "#fc1100",
-      relief = GROOVE,
-      command = res,
-  )
-  btnreset.pack(pady= 20, ipadx=10,ipady=15)
-
-
-  default()
-  root.mainloop()
-
-
-
+default()
+root.mainloop()
 
 def login_sucess():
   global screen3
