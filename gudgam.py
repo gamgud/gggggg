@@ -1,10 +1,7 @@
-import tkinter
 from tkinter import *
+import os
 import random
 from tkinter import messagebox
-import os
-import turtle
-
 root = Tk()
 
 answers = [
@@ -28,6 +25,11 @@ jumbled_words = [
 ]
 
 num =  random.randrange(0, len(jumbled_words), 1)
+
+
+root.geometry("450x500+175+50")
+root.title("Jumbled letters")
+root.configure(background = "#f5756c")
 
 lbl = Label(
       root,
@@ -59,21 +61,6 @@ def checkans():
         messagebox.showerror("WRONG", "This is probably  not Correct")
         e1.delete(0, END)
 
-def delete2():
-  screen3.destroy()
-
-def delete3():
-  screen4.destroy()
-
-def delete4():
-  screen5.destroy()
-
-def session():
-  screen8 = Toplevel(screen)
-
-  root = tkinter.Tk()
-  root.geometry("450x500+175+50")
-  root.title("Jumbled letters")
 
 ans1 = StringVar()
 e1 = Entry(
@@ -81,8 +68,8 @@ e1 = Entry(
   font=("Agency FB", 16),
   textvariable = ans1,
 )
+e1.pack(pady= 20,ipady=5,ipadx=5)
 
-# New segment starts here.
 
 btncheck = Button(
   root,
@@ -111,13 +98,18 @@ btnreset.pack(pady=20, ipadx=10, ipady=15)
 default()
 root.mainloop()
 
+
+
+def delete2():
+  screen3.destroy()
+
+def delete3():
+  screen4.destroy()
+
+def delete4():
+  screen5.destroy()
+  
 def login_sucess():
-  global screen3
-  screen3 = Toplevel(screen)
-  screen3.title("Success")
-  screen3.geometry("150x100")
-  Label(screen3, text = "Login Sucess").pack()
-  Button(screen3, text = "OK", command =delete2).pack()
   session()
 
 def password_not_recognised():
@@ -225,14 +217,102 @@ def login():
   password_entry1.pack()
   Label(screen2, text = "").pack()
   Button(screen2, text = "Login", width = 10, height = 1, command = login_verify).pack()
+
+def logout():
+    screen7.destroy()
+
+def saved():
+    screen10 = Toplevel(screen)
+    screen10.title("saved")
+    screen10.geometry("500x500")
+    Label(screen10,text="Your Score Has Been Saved!").pack()
+
+
+def save():
+    name= raw_name.get()
+    enterscore= raw_enterscore.get()
+    data= open(name,"w")
+    data.write(enterscore)
+    data.close()
+    saved()
+
+def enterscore():
+    global raw_name
+    raw_name = StringVar()
+    global raw_enterscore
+    raw_enterscore = StringVar()
+    screen9 = Toplevel(screen)
+    screen9.title("Enter Score")
+    screen9.geometry("500x500")
+    Label(screen9,text="Please Enter Your Name here:").pack()
+    Entry(screen9, textvariable= raw_name).pack()
+    Label(screen9,text="Please Enter Your Score here:").pack()
+    Entry(screen9, textvariable= raw_enterscore).pack()
+    Button(screen9,text="save",command= save).pack()
+
+def deletescore1():
+  name3= raw_name2.get()
+  os.remove(name3)
+  screen14 = Toplevel(screen)
+  screen14.title("LeaderBoard")
+  screen14.geometry("500x500")
+  Label(screen14,text= name3+" removed").pack()
+
+
+def deletescore():
+  screen13 = Toplevel(screen)
+  screen13.title("LeaderBoard")
+  screen13.geometry("500x500")
+  allscores= os.listdir()
+  Label(screen13,text= "these are all the scores").pack()
+  Label(screen13,text= allscores).pack()
+  global raw_name2
+  raw_name2= StringVar()
+  Entry(screen13, textvariable= raw_name2).pack()
+  Button(screen13,command= deletescore1,text= "ok").pack()
+
+
+
+def viewscore1():
+  name1= raw_name1.get()
+  data = open(name1,"r")
+  data1= data.read()
+  screen12 = Toplevel(screen)
+  screen12.title("LeaderBoard")
+  screen12.geometry("500x500")
+  Label(screen12,text= data1).pack()
   
+def viewscore():
+    screen11 = Toplevel(screen)
+    screen11.title("LeaderBoard")
+    screen11.geometry("500x500")
+    allscores= os.listdir()
+    Label(screen11,text= "these are all the scores").pack()
+    Label(screen11,text= allscores).pack()
+    global raw_name1
+    raw_name1= StringVar()
+    Entry(screen11, textvariable= raw_name1).pack()
+    Button(screen11,command= viewscore1,text= "ok").pack()
+
+
+def session():
+    screen8 = Toplevel(screen)
+    screen8.title("GREAT!")
+    screen8.geometry("500x500")
+    Label(screen8,text="You Win! ").pack()
+    Button(screen8,text= "Enter score ", command = enterscore).pack()
+    Button(screen8,text= "View Score ",command= viewscore).pack()
+    Button(screen8,text= "Delete Entry ",command= deletescore).pack()
+
+
+
   
 def main_screen():
   global screen
   screen = Tk()
   screen.geometry("300x250")
-  screen.title("Jumbled words login screen")
-  Label(text = "Login/register", bg = "grey", width = "300", height = "2", font = ("Calibri", 13)).pack()
+  screen.title("Jumbled Letters")
+  Label(text = "Jumbled Letters", bg = "grey", width = "300", height = "2", font = ("Calibri", 13)).pack()
   Label(text = "").pack()
   Button(text = "Login", height = "2", width = "30", command = login).pack()
   Label(text = "").pack()
@@ -241,3 +321,4 @@ def main_screen():
   screen.mainloop()
 
 main_screen()
+  
