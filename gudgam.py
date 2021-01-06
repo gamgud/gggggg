@@ -27,7 +27,7 @@ jumbled_words = [
 num =  random.randrange(0, len(jumbled_words), 1)
 
 
-root.geometry("450x500+175+50")
+root.geometry("450x500+450+150")
 root.title("Jumbled letters")
 root.configure(background = "#f5756c")
 
@@ -117,16 +117,18 @@ def password_not_recognised():
   screen4 = Toplevel(screen)
   screen4.title("Success")
   screen4.geometry("150x100")
-  Label(screen4, text = "Password Error").pack()
-  Button(screen4, text = "OK", command =delete3).pack()
+  screen4.configure(background = "#f5756c")
+  Label(screen4, text = "Password Error").pack(pady = 30,ipady=10,ipadx=15)
+  Button(screen4, text = "OK",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16), command =delete3).pack(pady = 30,ipady=10,ipadx=15)
 
 def user_not_found():
   global screen5
   screen5 = Toplevel(screen)
   screen5.title("Success")
   screen5.geometry("150x100")
-  Label(screen5, text = "User Not Found").pack()
-  Button(screen5, text = "OK", command =delete4).pack()
+  screen5.configure(background = "#f5756c")
+  Label(screen5, text = "User Not Found").pack(pady = 30,ipady=10,ipadx=15)
+  Button(screen5, text = "OK",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16), command =delete4).pack(pady = 30,ipady=10,ipadx=15)
 
   
 def register_user():
@@ -143,7 +145,7 @@ def register_user():
   username_entry.delete(0, END)
   password_entry.delete(0, END)
 
-  Label(screen1, text = "Registration Sucess", fg = "green" ,font = ("calibri", 11)).pack()
+  Label(screen1, text = "Registration Sucess", fg = "green" ,font = ("Agency FB", 11)).pack()
 
 def login_verify():
   
@@ -170,8 +172,8 @@ def register():
   global screen1
   screen1 = Toplevel(screen)
   screen1.title("Register")
-  screen1.geometry("300x250")
-  
+  screen1.geometry("450x500+450+150")
+  screen1.configure(background = "#f5756c")
   global username
   global password
   global username_entry
@@ -179,26 +181,26 @@ def register():
   username = StringVar()
   password = StringVar()
 
-  Label(screen1, text = "Please enter details below").pack()
-  Label(screen1, text = "").pack()
-  Label(screen1, text = "Username * ").pack()
+  Label(screen1, text = "Please enter details below",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=5,ipadx=15)
+  
+  Label(screen1, text = "Username  ",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=5,ipadx=15)
  
   username_entry = Entry(screen1, textvariable = username)
   username_entry.pack()
-  Label(screen1, text = "Password * ").pack()
+  Label(screen1, text = "Password  ",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=5,ipadx=15)
   password_entry =  Entry(screen1, textvariable = password)
   password_entry.pack()
-  Label(screen1, text = "").pack()
-  Button(screen1, text = "Register", width = 10, height = 1, command = register_user).pack()
-
+  
+  Button(screen1, text = "Register", width = 10, height = 1,bg = "#ffdbd9",fg = "#fc1100",font = ("Agency FB", 14), command = register_user).pack(pady = 30,ipady=5,ipadx=15)
+  
 def login():
   global screen2
   screen2 = Toplevel(screen)
   screen2.title("Login")
-  screen2.geometry("300x250")
-  Label(screen2, text = "Please enter details below to login").pack()
-  Label(screen2, text = "").pack()
-
+  screen2.geometry("450x500+450+150")
+  Label(screen2, text = "Please enter details below to login",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=5,ipadx=15)
+  
+  screen2.configure(background = "#f5756c")
   global username_verify
   global password_verify
   
@@ -208,15 +210,15 @@ def login():
   global username_entry1
   global password_entry1
   
-  Label(screen2, text = "Username * ").pack()
+  Label(screen2, text = "Username  ",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 15,ipady=5,ipadx=15)
   username_entry1 = Entry(screen2, textvariable = username_verify)
   username_entry1.pack()
-  Label(screen2, text = "").pack()
-  Label(screen2, text = "Password * ").pack()
+  
+  Label(screen2, text = "Password  ",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 20,ipady=5,ipadx=15)
   password_entry1 = Entry(screen2, textvariable = password_verify)
-  password_entry1.pack()
-  Label(screen2, text = "").pack()
-  Button(screen2, text = "Login", width = 10, height = 1, command = login_verify).pack()
+  password_entry1.pack(pady = 30,ipady=2,ipadx=15)
+  
+  Button(screen2, text = "Login",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16), width = 10, height = 2, command = login_verify).pack()
 
 def logout():
     screen7.destroy()
@@ -224,8 +226,10 @@ def logout():
 def saved():
     screen10 = Toplevel(screen)
     screen10.title("saved")
-    screen10.geometry("500x500")
-    Label(screen10,text="Your Score Has Been Saved!").pack()
+    screen10.geometry("450x500+450+150")
+    screen10.configure(background = "#f5756c")
+    Label(screen10,text="Your Score Has Been Saved!",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
+
 
 
 def save():
@@ -243,33 +247,38 @@ def enterscore():
     raw_enterscore = StringVar()
     screen9 = Toplevel(screen)
     screen9.title("Enter Score")
-    screen9.geometry("500x500")
-    Label(screen9,text="Please Enter Your Name here:").pack()
+    screen9.geometry("450x500+450+150")
+    screen9.configure(background = "#f5756c")
+    Label(screen9,text="Please Enter Your Name here:",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
     Entry(screen9, textvariable= raw_name).pack()
-    Label(screen9,text="Please Enter Your Score here:").pack()
-    Entry(screen9, textvariable= raw_enterscore).pack()
-    Button(screen9,text="save",command= save).pack()
+    Label(screen9,text="Please Enter Your Score here:",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
+    Entry(screen9, textvariable= raw_enterscore).pack(pady = 30,ipady=10,ipadx=15)
+    Button(screen9,text="save",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16),command= save).pack(pady = 30,ipady=10,ipadx=15)
 
 def deletescore1():
   name3= raw_name2.get()
   os.remove(name3)
   screen14 = Toplevel(screen)
   screen14.title("LeaderBoard")
-  screen14.geometry("500x500")
-  Label(screen14,text= name3+" removed").pack()
+  screen14.geometry("450x500+450+150")
+  screen14.configure(background = "#f5756c")
+  Label(screen14,text= name3+" removed").pack(pady = 30,ipady=10,ipadx=15)
 
 
 def deletescore():
   screen13 = Toplevel(screen)
   screen13.title("LeaderBoard")
-  screen13.geometry("500x500")
+  screen13.geometry("450x500+450+150")
+  screen13.configure(background = "#f5756c")
+
   allscores= os.listdir()
-  Label(screen13,text= "these are all the scores").pack()
-  Label(screen13,text= allscores).pack()
+
+  Label(screen13,text= "these are all the scores",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
+  Label(screen13,text= allscores).pack(pady = 30,ipady=10,ipadx=15)
   global raw_name2
   raw_name2= StringVar()
-  Entry(screen13, textvariable= raw_name2).pack()
-  Button(screen13,command= deletescore1,text= "ok").pack()
+  Entry(screen13, textvariable= raw_name2).pack(pady = 30,ipady=10,ipadx=15)
+  Button(screen13,command= deletescore1,text= "ok").pack(pady = 30,ipady=10,ipadx=15)
 
 
 
@@ -279,30 +288,33 @@ def viewscore1():
   data1= data.read()
   screen12 = Toplevel(screen)
   screen12.title("LeaderBoard")
-  screen12.geometry("500x500")
-  Label(screen12,text= data1).pack()
+  screen12.geometry("450x500+450+150")
+  screen12.configure(background = "#f5756c")
+  Label(screen12,text= data1).pack(pady = 30,ipady=10,ipadx=15)
   
 def viewscore():
     screen11 = Toplevel(screen)
     screen11.title("LeaderBoard")
-    screen11.geometry("500x500")
+    screen11.geometry("450x500+450+150")
+    screen11.configure(background = "#f5756c")
     allscores= os.listdir()
-    Label(screen11,text= "these are all the scores").pack()
-    Label(screen11,text= allscores).pack()
+    Label(screen11,text= "these are all the scores",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
+    Label(screen11,text= allscores).pack(pady = 30,ipady=10,ipadx=15)
     global raw_name1
     raw_name1= StringVar()
-    Entry(screen11, textvariable= raw_name1).pack()
-    Button(screen11,command= viewscore1,text= "ok").pack()
+    Entry(screen11, textvariable= raw_name1).pack(pady = 30,ipady=10,ipadx=15)
+    Button(screen11,command= viewscore1,text= "ok",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
 
 
 def session():
     screen8 = Toplevel(screen)
     screen8.title("GREAT!")
-    screen8.geometry("500x500")
-    Label(screen8,text="You Win! ").pack()
-    Button(screen8,text= "Enter score ", command = enterscore).pack()
-    Button(screen8,text= "View Score ",command= viewscore).pack()
-    Button(screen8,text= "Delete Entry ",command= deletescore).pack()
+    screen8.geometry("450x500+450+150")
+    screen8.configure(background = "#f5756c")
+    Label(screen8,text="You Win! ",bg = "#f5756c",fg = "#fc1100",font=("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
+    Button(screen8,text= "Enter score ",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16), command = enterscore).pack(pady = 30,ipady=10,ipadx=15)
+    Button(screen8,text= "View Score ",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16),command= viewscore).pack(pady = 30,ipady=10,ipadx=15)
+    Button(screen8,text= "Delete Entry ",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16),command= deletescore).pack(pady = 30,ipady=10,ipadx=15)
 
 
 
@@ -310,13 +322,14 @@ def session():
 def main_screen():
   global screen
   screen = Tk()
-  screen.geometry("300x250")
+  screen.geometry("450x500+450+150")
+  screen.configure(background = "#f5756c")
   screen.title("Jumbled Letters")
-  Label(text = "Jumbled Letters", bg = "grey", width = "300", height = "2", font = ("Calibri", 13)).pack()
-  Label(text = "").pack()
-  Button(text = "Login", height = "2", width = "30", command = login).pack()
-  Label(text = "").pack()
-  Button(text = "Register",height = "2", width = "30", command = register).pack()
+  Label(text = "Jumbled Letters", width = "300", height = "2",bg = "#ffdbd9",fg = "#fc1100", font = ("Agency FB", 16)).pack(pady = 30,ipady=10,ipadx=15)
+  
+  Button(text = "Login", height = "2", width = "30",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16), command = login).pack(pady = 30,ipady=10,ipadx=15)
+  
+  Button(text = "Register",height = "2", width = "30",bg = "#ffdbd9",fg = "#fc1100",font=("Agency FB", 16), command = register).pack(pady = 30,ipady=10,ipadx=15)
 
   screen.mainloop()
 
